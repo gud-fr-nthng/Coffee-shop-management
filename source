@@ -1,0 +1,242 @@
+import mysql.connector
+import time
+mydb=mysql.connector.connect(host='localhost',user='root',passwd='SOmu71##')
+myc=mydb.cursor()
+myc.execute("create database if not exists coffee_shop")
+myc.execute("use coffee_shop")
+myc.execute("create table if not exists customer_data(Name varchar(20), mobile_no varchar(15),CAPPUCCINO int, LATTE int, COLD_COFFEE int,ESPRESSO int,REGULAR varchar(20))")
+print("*Customer Monitor*")
+print("\n")
+print("        ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗")
+print("        ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝")
+print("        ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  ")
+print("        ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  ")
+print("        ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗")
+print("         ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝")
+time.sleep(2)
+print("\n")
+print("*Counter Monitor*")
+print("\n")
+m=input("Enter Mobile number:")
+print("\n")
+
+def bill(cap,lat,col,esp):
+    print("\n")
+    print("*Customer Monitor*")
+    print("\n")
+    if cap[0]!= 0:
+        myc.execute("UPDATE customer_data SET CAPPUCCINO = (CAPPUCCINO + %s) where Mobile_no = '%s'"%(cap[0],m))
+        mydb.commit()
+        print("CAPPUCCINO", cap[0] , "price:", 60*cap[0],"rupees")
+        print("\n")
+        if lat[0]!=0:
+            myc.execute("UPDATE customer_data SET LATTE = (LATTE + %s) where Mobile_no = '%s'"%(lat[0],m))
+            mydb.commit()
+            print("LATTE", lat[0] , "price:", 70*lat[0],"rupees")
+            print("\n")
+            if col[0]!= 0:
+                myc.execute("UPDATE customer_data SET COLD_COFFEE = (COLD_COFFEE + %s) where Mobile_no = '%s'"%(col[0],m))
+                mydb.commit()
+                print("COLD COFFEE", col[0] , "price:", 80*col[0],"rupees")
+                print("\n")
+                if esp[0]!= 0:
+                    myc.execute("UPDATE customer_data SET ESPRESSO = (ESPRESSO + %s) where Mobile_no = '%s'"%(esp[0],m))
+                    mydb.commit()
+                    print("ESPRESSO", esp[0] , "price:", 50*esp[0],"rupees")
+                    print("\n")
+                
+            elif esp[0]!= 0:
+                myc.execute("UPDATE customer_data SET ESPRESSO = (ESPRESSO + %s) where Mobile_no = '%s'"%(esp[0],m))
+                mydb.commit()
+                print("ESPRESSO", esp[0] , "price:", 50*esp[0],"rupees")
+                print("\n")
+            
+        elif col[0]!= 0:
+            myc.execute("UPDATE customer_data SET COLD_COFFEE = (COLD_COFFEE + %s) where Mobile_no = '%s'"%(col[0],m))
+            mydb.commit()
+            print("COLD COFFEE", col[0] , "price:", 80*col[0],"rupees")
+            print("\n")
+        elif esp[0]!= 0:
+            myc.execute("UPDATE customer_data SET ESPRESSO = (ESPRESSO + %s) where Mobile_no = '%s'"%(esp[0],m))
+            mydb.commit()
+            print("ESPRESSO", esp[0] , "price:", 50*esp[0],"rupees")
+            print("\n")
+            
+            
+    elif lat[0]!= 0:
+        myc.execute("UPDATE customer_data SET LATTE = (LATTE + %s) where Mobile_no = '%s'"%(lat[0],m))
+        mydb.commit()
+        print("LATTE", lat[0] , "price:", 70*lat[0],"rupees")
+        print("\n")
+        if col[0]!= 0:
+            myc.execute("UPDATE customer_data SET COLD_COFFEE = (COLD_COFFEE + %s) where Mobile_no = '%s'"%(col[0],m))
+            mydb.commit()
+            print("COLD COFFEE", col[0] , "price:", 80*col[0],"rupees")
+            print("\n")
+            if esp[0]!= 0:
+                myc.execute("UPDATE customer_data SET ESPRESSO = (ESPRESSO + %s) where Mobile_no = '%s'"%(esp[0],m))
+                mydb.commit()
+                print("ESPRESSO", esp[0] , "price:", 50*esp[0],"rupees")
+                print("\n")
+        elif esp[0]!= 0:
+            myc.execute("UPDATE customer_data SET ESPRESSO = (ESPRESSO + %s) where Mobile_no = '%s'"%(esp[0],m))
+            mydb.commit()
+            print("ESPRESSO", esp[0] , "price:", 50*esp[0],"rupees")
+            print("\n")
+            
+    elif col[0]!= 0:
+        myc.execute("UPDATE customer_data SET COLD_COFFEE = (COLD_COFFEE + %s) where Mobile_no = '%s'"%(col[0],m))
+        mydb.commit()
+        print("COLD COFFEE", col[0] , "price:", 80*col[0],"rupees")
+        print("\n")
+        if esp[0]!= 0:
+            myc.execute("UPDATE customer_data SET ESPRESSO = (ESPRESSO + %s) where Mobile_no = '%s'"%(esp[0],m))
+            mydb.commit()
+            print("ESPRESSO", esp[0] , "price:", 50*esp[0],"rupees")
+            print("\n")
+            
+    elif esp[0]!= 0:
+        myc.execute("UPDATE customer_data SET ESPRESSO = (ESPRESSO + %s) where Mobile_no = '%s'"%(esp[0],m))
+        mydb.commit()
+        print("ESPRESSO", esp[0] , "price:", 50*esp[0],"rupees")
+    print("\n")
+    print("Your total is ---------------->",(60*cap[0])+(50*esp[0])+(80*col[0])+(70*lat[0]), "rupees")
+    print("\n")
+    time.sleep(2)
+    print("*Counter Monitor*")
+    print("\n")
+    p=input('Payment received?(Y)')
+    if p == 'Y':
+        print('\n')
+        print("*Customer Monitor*")
+        print('\n')
+        print('      ██╗   ██╗██╗███████╗██╗████████╗     █████╗  ██████╗  █████╗ ██╗███╗   ██╗██╗██╗')
+        print('      ██║   ██║██║██╔════╝██║╚══██╔══╝    ██╔══██╗██╔════╝ ██╔══██╗██║████╗  ██║██║██║')
+        print('      ██║   ██║██║███████╗██║   ██║       ███████║██║  ███╗███████║██║██╔██╗ ██║██║██║')
+        print('      ╚██╗ ██╔╝██║╚════██║██║   ██║       ██╔══██║██║   ██║██╔══██║██║██║╚██╗██║╚═╝╚═╝')
+        print('       ╚████╔╝ ██║███████║██║   ██║       ██║  ██║╚██████╔╝██║  ██║██║██║ ╚████║██╗██╗')
+        print('        ╚═══╝  ╚═╝╚══════╝╚═╝   ╚═╝       ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚═╝')
+        
+
+cap=[0]
+lat=[0]
+col=[0]
+esp=[0]
+    
+    
+
+
+def order():
+    print(" #C for CAPPUCCINO\n #L for LATTE\n #D for COLD COFFEE\n #E for ESPRESSO\n ")
+    global cap
+    global lat
+    global col
+    global esp
+    print("\n")
+    
+    
+    o=input("Order:")
+    print("\n")
+    i=int(input("How much:"))
+
+        
+    if o== "C":
+        cap[0]=i
+    elif o== "L":
+        lat[0]=i
+    elif o=="D":
+        col[0]=i
+    elif o=="E":
+        esp[0]=i
+
+    print("\n")
+
+
+    a=input("Anything else(Y/N):")
+    if a == "y":
+        order()
+    elif a == "Y":
+        order()
+    else:
+        bill(cap,lat,col,esp)
+    
+    
+
+def coffee_new():
+    
+    print("\n")
+    print("\n")
+    
+    
+    print("*Customer Monitor*")
+    print("\n")
+    print("\n")
+    print("WHAT WOULD YOU LIKE TO HAVE,",new,"?")
+    myc.execute("INSERT INTO customer_data (Name, Mobile_no,CAPPUCCINO,LATTE,COLD_COFFEE,ESPRESSO) VALUES (%s, %s,0,0,0,0)", (new,m))
+    mydb.commit()
+    time.sleep(2)
+    print("\n")
+    
+    print(" WOULD YOU LIKE TO SET IT AS REGULAR?")
+    time.sleep(2)
+    
+    print("\n")
+    print("*Counter Monitor*")
+    print("\n")
+    per=input("Set REGULAR for this customer??(Y/N)")
+    if per =="Y":
+        print("\n")
+        new_regular=input("Enter regular for the customer")
+        myc.execute("update customer_data SET REGULAR='%s' where Name = '%s'"%(new_regular,new))
+        mydb.commit()
+    else:
+        pass
+    
+    
+    order()
+
+def coffee():
+    print("\n")
+    print("\n")
+    name1=name[0]
+    first=name1.split()
+    print("WHAT WOULD YOU LIKE TO HAVE,",first[0],"?")
+    time.sleep(2)
+    print("\n")
+    print("REGULAR OR SOMETHING NEW? ;)")
+    print("\n")
+    print("\n")
+    reg="SELECT REGULAR from customer_data WHERE Mobile_no ={}".format(m)
+    myc.execute(reg)
+    regular=myc.fetchone()
+    time.sleep(2)
+    
+    print("*Counter Monitor*")
+    print("\n")
+    print("His/her regular is ",regular[0] ,".")
+    print("\n")
+    
+    order()
+    
+              
+          
+    
+        
+
+st="SELECT Name from customer_data WHERE Mobile_no ={}".format(m)
+myc.execute(st)
+name= myc.fetchone()
+if name is None:
+    print("\n")
+    new=input("Enter the name of the customer:")
+    coffee_new()
+else:
+    print("*Customer Monitor*")
+    print("\n")
+    print("WELCOME",name[0])
+    time.sleep(2)
+    coffee()
+
+
+
+mydb.close()
